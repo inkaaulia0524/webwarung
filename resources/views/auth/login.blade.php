@@ -12,32 +12,50 @@
             --text-color: #333;
             --text-color-light: #666;
             --border-color: #ddd;
-            --background-color: #f4f7f6;
+           --background-color: #02befd; 
             --white: #ffffff;
             --danger-color: #e3342f;
         }
 
+        @@keyframes backgroundAnimate {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--background-color);
+            
+            background: linear-gradient(-45deg, #003366, #005960, #43D4C4);
+            
+            background-size: 400% 400%;
+            animation: backgroundAnimate 15s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
             color: var(--text-color);
+            padding: 2rem 0; 
         }
-
         .login-container {
-            background-color: var(--white);
+            
+            background-color: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(10px); 
+            
             padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 12px; /* Dibuat lebih bulat agar lebih modern */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Border 'kaca' tipis */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* Shadow lebih halus */
             width: 100%;
             max-width: 420px;
             box-sizing: border-box;
         }
-
         .login-header {
             text-align: center;
             margin-bottom: 2rem;
