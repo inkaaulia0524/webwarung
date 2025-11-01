@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('kasir.layout')
 @section('content')
 
     <style>
