@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function Dashboard()
     {
-        //
+        if(Auth::check() && Auth::user()->role == 'admin'){
+            return view('admin.dashboard');
+        }
+        elseif(Auth::check() && Auth::user()->role == 'kasir'){
+            return view('kasir.dashboard');
+        }
+        else{
+            return redirect ('/');
+        }
     }
 
     /**

@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Warung Sembako</title>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #003366; 
@@ -28,11 +31,12 @@
                 background-position: 0% 50%;
             }
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            
+        body {         
+            font-family: "Crimson Pro", serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
             background: linear-gradient(-45deg, #003366, #005960, #43D4C4);
-            
             background-size: 400% 400%;
             animation: backgroundAnimate 15s ease infinite;
             display: flex;
@@ -42,6 +46,7 @@
             margin: 0;
             color: var(--text-color);
         }
+
         .login-container {
             
             background-color: rgba(255, 255, 255, 0.85); 

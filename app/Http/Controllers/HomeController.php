@@ -6,7 +6,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        // untuk bagian laporan dll mendatang
     }
 }
 

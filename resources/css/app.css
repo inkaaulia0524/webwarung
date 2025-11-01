@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font global */
+/* Global font: Crimson Pro */
 body {
-    @apply bg-gradient-to-b from-blue-100 to-white text-gray-800 font-sans;
+  font-family: "Crimson Pro", serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
-/* Warna tombol utama */
+
+
+/* Tombol utama */
 .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md shadow transition duration-200;
 }
@@ -22,7 +27,7 @@ body {
     @apply bg-white shadow-lg rounded-xl p-8 border-t-4 border-blue-500;
 }
 
-/* Logo styling */
+/* Logo */
 .logo-warungweb {
     @apply w-24 h-24 mx-auto mb-6 rounded-full shadow-lg;
 }

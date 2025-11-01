@@ -41,15 +41,7 @@ class AuthenticatedSessionController extends Controller
         } elseif ($role == 'kasir') {
             // Arahkan ke route yang bernama 'kasir.dashboard'
             return redirect()->route('kasir.dashboard');
-        
-        } else {
-            // Fallback jika rolenya tidak dikenal
-            // Kita ganti redirect()->intended() menjadi redirect() polos
-            // Ini akan "memaksa" browser melakukan request GET dan menghindari error 405
-            return redirect(route('dashboard', absolute: false));
         }
-        
-        // --- PERUBAHAN SELESAI ---
     }
 
     /**

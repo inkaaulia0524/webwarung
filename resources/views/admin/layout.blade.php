@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - GudangMu</title>
+    <title>GudangMu</title>
+    <!-- Import font Crimson Pro dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -18,9 +22,17 @@
 
         body {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Crimson Pro", serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
+        }
+
+        /* bagian ini supaya semua tombol ikut font crimson */
+        button,
+        input,
+        select,
+        textarea {
+            font-family: "Crimson Pro", serif;
         }
 
         .admin-layout {
@@ -28,7 +40,6 @@
             min-height: 100vh;
         }
 
-        /* --- Sidebar --- */
         .sidebar {
             width: 250px;
             background-color: var(--primary-color);
@@ -68,20 +79,17 @@
             background-color: var(--primary-hover);
         }
         
-        /* Ini untuk menandai link yang aktif */
         .sidebar-menu li.active a {
             background-color: var(--primary-hover);
             font-weight: 700;
         }
 
-        /* --- Main Content --- */
         .main-content {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        /* --- Top Header --- */
         .top-header {
             height: 60px;
             background-color: var(--white);
@@ -90,37 +98,49 @@
             justify-content: flex-end;
             align-items: center;
             padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         .profile-dropdown {
             position: relative;
-            cursor: pointer;
         }
         
-        .profile-icon {
-            /* Ganti dengan <i class="fas fa-user-circle"></i> jika pakai FontAwesome */
-            font-size: 1.8rem;
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
             color: var(--text-dark);
         }
 
+        .profile-icon {
+            font-size: 1.8rem;
+        }
+
         .dropdown-menu {
-            display: none;
             position: absolute;
             right: 0;
-            top: 45px;
+            top: 48px;
             background-color: var(--white);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border-radius: 8px;
             width: 180px;
             overflow: hidden;
             z-index: 100;
+            display: none;
         }
 
-        .profile-dropdown:hover .dropdown-menu {
+        .dropdown-menu.show {
             display: block;
         }
 
-        .dropdown-menu a, .dropdown-menu form button {
+        .dropdown-menu a,
+        .dropdown-menu form button {
             display: block;
             padding: 12px 15px;
             text-decoration: none;
@@ -131,9 +151,11 @@
             width: 100%;
             text-align: left;
             cursor: pointer;
+            font-family: "Crimson Pro", serif; 
         }
 
-        .dropdown-menu a:hover, .dropdown-menu form button:hover {
+        .dropdown-menu a:hover,
+        .dropdown-menu form button:hover {
             background-color: #f0f0f0;
         }
         
@@ -143,7 +165,6 @@
             margin: 5px 0;
         }
 
-        /* --- Content Area --- */
         .content-area {
             padding: 2rem;
             flex-grow: 1;
@@ -193,30 +214,43 @@
         <main class="main-content">
             
             <header class="top-header">
-                <div class="profile-dropdown">
-                    <div class="profile-icon">
-                        🧑‍💼
-                    </div>
-                    <div class="dropdown-menu">
+                <div class="profile-dropdown" id="profileDropdown">
+                    <button class="profile-btn" type="button">
+                        <span class="profile-icon">🧑‍💼</span>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
                         <a href="#">👤 Profile</a>
                         <div class="dropdown-divider"></div>
-                        
-                       <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit">🚪 Logout</button>
-    </form>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="logout-btn">🚪 Logout</button>
+                        </form>
                     </div>
                 </div>
             </header>
             
             <section class="content-area">
-                
                 @yield('content')
-                
             </section>
         </main>
         
     </div>
+
+    <script>
+        const dropdown = document.getElementById('profileDropdown');
+        const menu = document.getElementById('profileMenu');
+
+        dropdown.addEventListener('click', function (e) {
+            e.stopPropagation();
+            menu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function () {
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        });
+    </script>
 
 </body>
 </html>
