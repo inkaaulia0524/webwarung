@@ -159,10 +159,10 @@
             <a href="{{ route('admin.dashboard') }}">🏠 Dashboard</a>
           </li>
           <li class="{{ Request::is('admin/data-barang*') ? 'active' : '' }}">
-            <a href="#">📦 Data Barang</a>
+            <a href="{{ route('barang.index') }}">📦 Data Barang</a>
           </li>
           <li class="{{ Request::is('admin/data-supplier*') ? 'active' : '' }}">
-            <a href="#">👥 Data Supplier</a>
+            <a href="{{ route('supplier.index') }}">👥 Data Supplier</a>
           </li>
           <li class="{{ Request::is('admin/barang-masuk*') ? 'active' : '' }}">
             <a href="#">📥 Barang Masuk</a>
@@ -181,7 +181,7 @@
 
       <!-- Bagian bawah sidebar -->
       <div class="sidebar-footer">
-        <a href="{{ route('admin.profile.edit') }}">👤 Profil</a>
+        <a href="{{ route('profile.edit') }}">👤 Profil</a>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
           <button type="submit">🚪 Logout</button>
