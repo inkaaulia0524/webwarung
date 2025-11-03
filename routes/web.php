@@ -38,8 +38,12 @@ Route::middleware('auth')->group(function () {
         })->name('admin.dashboard');
 
         // Profil Admin
-        Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
-        Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+        Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('profile.update');
+
+        // Manajemen Barang
+        Route::resource('/admin/barang', App\Http\Controllers\Admin\BarangController::class);
+        Route::resource('/admin/supplier', App\Http\Controllers\Admin\SupplierController::class);
     });
 
 });
