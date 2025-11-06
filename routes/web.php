@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
         // Profil Kasir
         Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
         Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
+        // stok barang
+        Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokController::class);
     });
 
     // === ADMIN ===
