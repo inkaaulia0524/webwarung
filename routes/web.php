@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 */
 
 // Halaman welcome
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
