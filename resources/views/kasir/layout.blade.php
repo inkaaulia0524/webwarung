@@ -162,7 +162,10 @@
             <a href="{{ route('stok.index') }}">📦 Stok Barang</a>
           </li>
           <li class="{{ Request::is('kasir/penjualan*') ? 'active' : '' }}">
-            <a href="#">📄 Penjualan</a>
+             <a href="{{ route('penjualan.index') }}" class="nav-link">
+    <i class="bi bi-cash-stack"></i>📄Penjualan
+  </a>
+          
           </li>
         </ul>
       </div>
