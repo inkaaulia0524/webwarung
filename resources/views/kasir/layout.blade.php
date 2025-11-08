@@ -159,7 +159,7 @@
             <a href="{{ route('kasir.dashboard') }}">🏠 Dashboard</a>
           </li>
           <li class="{{ Request::is('kasir/stok-barang*') ? 'active' : '' }}">
-            <a href="#">📦 Stok Barang</a>
+            <a href="{{ route('stok.index') }}">📦 Stok Barang</a>
           </li>
           <li class="{{ Request::is('kasir/penjualan*') ? 'active' : '' }}">
             <a href="#">📄 Penjualan</a>

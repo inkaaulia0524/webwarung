@@ -14,12 +14,12 @@ class BarangController extends Controller
             return $query->where('nama_barang', 'like', "%{$search}%");
         })->paginate(10);
 
-        return view('barang.index', compact('barangs', 'search'));
+        return view('admin.barang.index', compact('barangs', 'search'));
     }
 
     public function create()
     {
-        return view('barang.create');
+        return view('admin.barang.create');
     }
 
     public function store(Request $request)
@@ -29,6 +29,8 @@ class BarangController extends Controller
             'stok' => 'required|integer',
             'harga_beli' => 'required|numeric',
             'harga_jual' => 'required|numeric',
+            'kode' => 'required|unique:barangs,kode',
+            'kategori' => 'nullable|string',
         ]);
 
         Barang::create($request->all());
@@ -37,7 +39,7 @@ class BarangController extends Controller
 
     public function edit(Barang $barang)
     {
-        return view('barang.edit', compact('barang'));
+        return view('admin.barang.edit', compact('barang'));
     }
 
     public function update(Request $request, Barang $barang)

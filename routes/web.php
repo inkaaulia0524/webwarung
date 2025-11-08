@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 /*
@@ -11,7 +12,7 @@ use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 */
 
 // Halaman welcome
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('welcome');
 })->name('welcome');
 
@@ -30,7 +31,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
         Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
         // stok barang
-        Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokController::class);
+        Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokBarangController::class)->only(['index']);
+
     });
 
     // === ADMIN ===

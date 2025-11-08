@@ -20,7 +20,7 @@
         </div>
       @endif
 
-      {{-- Form Pencarian --}}
+      {{-- Form Edit Supplier --}}
       <form action="{{ route('supplier.update', $supplier->id) }}" method="POST" style="display:flex;flex-direction:column;gap:16px;">
         @csrf
         @method('PUT')
@@ -93,32 +93,31 @@
           @enderror
         </div>
 
-        <button type="submit" style="
-          display:inline-block;
-          padding:12px 16px;
-          background-color:var(--primary-color);
-          color:white;
-          font-size:16px;
-          font-weight:600;
-          border-radius:8px;
-          text-decoration:none;
-          margin-top:12px;">
-          Update
-        </button>
-      </form>
+        <div style="display: flex; gap: 8px; align-items: center; justify-content: flex-start;">
+          <button type="submit" style="
+            display:inline-block;
+            padding:12px 16px;
+            background-color:var(--primary-hover);
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            margin-top:12px;">
+            Update
+          </button>
 
-      <a href="{{ route('supplier.index') }}" style="
-        display:inline-block;
-        padding:12px 16px;
-        background-color:var(--primary-hover);
-        color:white;
-        font-size:16px;
-        font-weight:600;
-        border-radius:8px;
-        text-decoration:none;
-        margin-top:12px;">
-        Kembali
-      </a>
+          <a href="{{ route('supplier.index') }}" style="
+            display:inline-block;
+            padding:12px 16px;
+            background-color:var(--primary-hover);
+            color:white;
+            border-radius:8px;
+            text-decoration:none;
+            margin-top:12px;">
+            Kembali
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 @endsection
