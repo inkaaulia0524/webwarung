@@ -169,7 +169,7 @@
 
       <!-- Bagian bawah sidebar -->
       <div class="sidebar-footer">
-        <a href="{{ route('kasir.profile.edit') }}">👤 Profil</a>
+        <a href="{{ route('kasir.profile.edit') }}">👤 Profile</a>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
           <button type="submit">🚪 Logout</button>

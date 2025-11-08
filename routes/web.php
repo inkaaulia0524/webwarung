@@ -18,7 +18,6 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-// Semua pengguna yang login
 Route::middleware('auth')->group(function () {
 
     // === KASIR ===
@@ -26,7 +25,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', function () {
             return view('kasir.dashboard');
         })->name('kasir.dashboard');
-
         // Profil Kasir
         Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
         Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
@@ -40,7 +38,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
-
         // Profil Admin
         Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('profile.update');
