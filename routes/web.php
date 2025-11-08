@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\PenjualansController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
@@ -46,6 +47,7 @@ Route::middleware('auth')->group(function () {
         // Manajemen Barang
         Route::resource('/admin/barang', App\Http\Controllers\Admin\BarangController::class);
         Route::resource('/admin/supplier', App\Http\Controllers\Admin\SupplierController::class);
+        Route::resource('/admin/pembelian', App\Http\Controllers\Admin\PembelianController::class);
     });
 
     Route::resource('penjualan', PenjualansController::class);
