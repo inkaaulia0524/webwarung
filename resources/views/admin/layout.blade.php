@@ -165,7 +165,7 @@
             <a href="{{ route('supplier.index') }}">👥 Data Supplier</a>
           </li>
           <li class="{{ Request::is('admin/barang-masuk*') ? 'active' : '' }}">
-            <a href="#">📥 Barang Masuk</a>
+            <a href="{{ route('pembelian.index') }}">📥 Barang Masuk</a>
           </li>
           <li class="{{ Request::is('admin/barang-keluar*') ? 'active' : '' }}">
             <a href="#">📤 Barang Keluar</a>
