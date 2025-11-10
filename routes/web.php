@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/admin/barang', App\Http\Controllers\Admin\BarangController::class);
         Route::resource('/admin/supplier', App\Http\Controllers\Admin\SupplierController::class);
         Route::resource('/admin/pembelian', App\Http\Controllers\Admin\PembelianController::class);
+        Route::resource('/admin/pengeluaran', App\Http\Controllers\Admin\PengeluaranController::class);
     });
 
 });
