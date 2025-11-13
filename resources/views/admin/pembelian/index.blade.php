@@ -19,7 +19,7 @@
         </div>
       @endif
 
-      {{-- Form Pencarian Pembelian --}}
+      
       <form method="GET" action="{{ route('pembelian.index') }}" 
             style="display:flex;gap:0;margin-bottom:12px;align-items:stretch;">
         <input
@@ -39,7 +39,6 @@
       </form>
     </div>
 
-    {{-- Tabel Pembelian --}}
     <div style="width:100%;overflow-x:auto;background:var(--white);
                 border:1px solid var(--border-color);border-radius:8px;">
       <table style="width:100%;border-collapse:collapse;min-width:720px;">
@@ -95,14 +94,12 @@
       </table>
     </div>
 
-    {{-- Pagination --}}
     @if (method_exists($pembelians, 'links'))
       <div style="margin-top:8px;">
         {{ $pembelians->appends(['search' => request('search')])->links() }}
       </div>
     @endif
 
-    {{-- Tombol Tambah Barang --}}
     <div>
       <a href="{{ route('pembelian.create') }}" 
          style="display:inline-block;padding:10px 14px;

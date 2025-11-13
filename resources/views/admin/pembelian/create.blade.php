@@ -19,7 +19,6 @@
         </div>
       @endif
       
-      {{-- Menampilkan error validasi --}}
       @if ($errors->any())
         <div style="
           padding:10px 12px;
@@ -38,7 +37,6 @@
       @endif
 
 
-      {{-- Form Create Pembelian --}}
       <form action="{{ route('pembelian.store') }}" method="POST" style="display:flex;flex-direction:column;gap:16px;">
         @csrf
         
@@ -59,7 +57,6 @@
           @enderror
         </div>
 
-        {{-- Dropdown Nama Supplier --}}
         <div>
           <label for="supplier_id" style="font-size:16px;font-weight:600;color:var(--text-dark);">Supplier</label>
           <select id="supplier_id" name="supplier_id" required
@@ -75,7 +72,6 @@
           @enderror
         </div>
 
-        {{-- Input Jumlah --}}
         <div>
           <label for="jumlah" style="font-size:16px;font-weight:600;color:var(--text-dark);">Jumlah Masuk</label>
           <input type="number" id="jumlah" name="jumlah" value="{{ old('jumlah') }}" required
@@ -85,7 +81,6 @@
           @enderror
         </div>
 
-        {{-- Input Tanggal --}}
         <div>
           <label for="tanggal_masuk" style="font-size:16px;font-weight:600;color:var(--text-dark);">Tanggal Masuk</label>
           <input type="date" id="tanggal_masuk" name="tanggal_masuk" value="{{ old('tanggal_masuk', date('Y-m-d')) }}" required

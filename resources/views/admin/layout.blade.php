@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WarungKu - Admin</title>
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
@@ -150,7 +149,6 @@
 
   <div class="admin-layout">
     
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div>
         <div class="sidebar-header">WarungKu</div>
@@ -158,16 +156,16 @@
           <li class="{{ Request::is('admin/dashboard*') ? 'active' : '' }}">
             <a href="{{ route('admin.dashboard') }}">🏠 Dashboard</a>
           </li>
-          <li class="{{ Request::is('admin/data-barang*') ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/barang*') ? 'active' : '' }}">
             <a href="{{ route('barang.index') }}">📦 Data Barang</a>
           </li>
-          <li class="{{ Request::is('admin/data-supplier*') ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/supplier*') ? 'active' : '' }}">
             <a href="{{ route('supplier.index') }}">👥 Data Supplier</a>
           </li>
-          <li class="{{ Request::is('admin/barang-masuk*') ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/pembelian*') ? 'active' : '' }}">
             <a href="{{ route('pembelian.index') }}">📥 Barang Masuk</a>
           </li>
-          <li class="{{ Request::is('admin/barang-keluar*') ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/pengeluaran*') ? 'active' : '' }}">
             <a href="{{ route('pengeluaran.index') }}">📤 Barang Keluar</a>
           </li>
           <li class="{{ Request::is('admin/laporan*') ? 'active' : '' }}">
@@ -179,7 +177,6 @@
         </ul>
       </div>
 
-      <!-- Bagian bawah sidebar -->
       <div class="sidebar-footer">
         <a href="{{ route('profile.edit') }}">👤 Profil</a>
         <form method="POST" action="{{ route('logout') }}">
@@ -189,7 +186,6 @@
       </div>
     </aside>
 
-    <!-- Konten utama -->
     <main class="main-content">
       <header class="top-header">
         <span>Admin Dashboard</span>
@@ -200,6 +196,8 @@
       </section>
     </main>
   </div>
+
+  @stack('scripts')
 
 </body>
 </html>

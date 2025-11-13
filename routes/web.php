@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\Admin\PengeluaranController;
 use App\Http\Controllers\Admin\BarangController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 /*
@@ -38,9 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // === ADMIN ===
     Route::middleware('admin')->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
+        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         // Profil Admin
         Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
