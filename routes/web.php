@@ -6,6 +6,7 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\Admin\PengeluaranController;
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GrafikController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 /*
@@ -41,7 +42,7 @@ Route::middleware('auth')->group(function () {
     // === ADMIN ===
     Route::middleware('admin')->group(function () {
         Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-
+        Route::get('/admin/grafik', [GrafikController::class, 'index'])->name('grafik.index');
         // Profil Admin
         Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('profile.update');

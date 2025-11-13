@@ -172,7 +172,7 @@
             <a href="#">📄 Laporan</a>
           </li>
           <li class="{{ Request::is('admin/grafik*') ? 'active' : '' }}">
-            <a href="#">📊 Grafik</a>
+            <a href="{{ route('grafik.index') }}">📊 Grafik</a>
           </li>
         </ul>
       </div>

@@ -70,7 +70,6 @@
             <p class="stat-value">{{ number_format($barangMasukBulanIni) }}</p>
         </div>
         <div class="stat-card">
-            {{-- Ini sekarang mengambil dari tabel 'pengeluaran' --}}
             <h3>Barang Keluar (Bulan Ini)</h3>
             <p class="stat-value">{{ number_format($barangKeluarBulanIni) }}</p>
         </div>
@@ -81,9 +80,8 @@
     </div>
 
     <div class="chart-container">
-        <h2>Grafik Barang Masuk vs Keluar (Bulan Ini)</h2>
+        <h2>Grafik Barang Masuk dan Keluar (Bulan Ini)</h2>
         
-        {{-- Ini adalah tempat chart akan digambar --}}
         <canvas id="myChart"></canvas>
     </div>
     @push('scripts')
