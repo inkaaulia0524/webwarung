@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PengeluaranController;
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GrafikController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 /*
@@ -52,6 +53,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('/admin/supplier', App\Http\Controllers\Admin\SupplierController::class);
         Route::resource('/admin/pembelian', App\Http\Controllers\Admin\PembelianController::class);
         Route::resource('/admin/pengeluaran', App\Http\Controllers\Admin\PengeluaranController::class);
-    });
+    
+        // Laporan
+        Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+Route::get('/admin/laporan/stok', [LaporanController::class, 'stok'])->name('laporan.stok');
+Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
+Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
+});
 
 });

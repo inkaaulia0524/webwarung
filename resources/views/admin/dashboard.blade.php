@@ -80,7 +80,7 @@
     </div>
 
     <div class="chart-container">
-        <h2>Grafik Barang Masuk dan Keluar (Bulan Ini)</h2>
+        <h2>Grafik Barang Masuk dan Keluar (7 Hari Terakhir)</h2>
         
         <canvas id="myChart"></canvas>
     </div>

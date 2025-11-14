@@ -169,7 +169,7 @@
             <a href="{{ route('pengeluaran.index') }}">📤 Barang Keluar</a>
           </li>
           <li class="{{ Request::is('admin/laporan*') ? 'active' : '' }}">
-            <a href="#">📄 Laporan</a>
+            <a href="{{ route('laporan.index') }}">📄 Laporan</a>
           </li>
           <li class="{{ Request::is('admin/grafik*') ? 'active' : '' }}">
             <a href="{{ route('grafik.index') }}">📊 Grafik</a>
