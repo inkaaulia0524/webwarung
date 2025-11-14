@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\Admin\PengeluaranController;
 use App\Http\Controllers\Admin\BarangController;
+use App\Http\Controllers\PenjualansController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GrafikController;
 use App\Http\Controllers\Admin\LaporanController;
