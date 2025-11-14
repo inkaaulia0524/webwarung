@@ -25,14 +25,6 @@ class Pembelian extends Model
     protected $casts = [
         'tanggal_masuk' => 'date',
     ];
-
-
-
-    
-    // ---
-    // Di bawah ini adalah kode untuk relasi yang nanti akan kita pakai
-    // Boleh ditambahkan sekarang
-    
     public function barang()
     {
         return $this->belongsTo(Barang::class);

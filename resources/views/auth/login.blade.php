@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     
     <style>
@@ -236,14 +237,21 @@
                         Lupa Password?
                     </a>
                 @endif
+            </div> <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+
+                @if ($errors->has('g-recaptcha-response'))
+                    <div class="invalid-feedback" role="alert" style="display: block; margin-top: 0.5rem;">
+                        {{ $errors->first('g-recaptcha-response') }}
+                    </div>
+                @endif
             </div>
 
             <button type="submit" class="login-button">
                 Login
             </button>
-        </form>
-
-        <div class="register-link">
+            
+        </form> <div class="register-link">
             <p>
                 Belum punya akun?
                 @if (Route::has('register'))
@@ -251,7 +259,6 @@
                 @endif
             </p>
         </div>
-    </div>
-
+    </div> 
 </body>
 </html>
