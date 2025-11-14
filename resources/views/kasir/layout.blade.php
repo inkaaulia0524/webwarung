@@ -162,14 +162,17 @@
             <a href="{{ route('stok.index') }}">📦 Stok Barang</a>
           </li>
           <li class="{{ Request::is('kasir/penjualan*') ? 'active' : '' }}">
-            <a href="#">📄 Penjualan</a>
+             <a href="{{ route('penjualan.index') }}" class="nav-link">
+    <i class="bi bi-cash-stack"></i>📄Penjualan
+  </a>
+          
           </li>
         </ul>
       </div>
 
       <!-- Bagian bawah sidebar -->
       <div class="sidebar-footer">
-        <a href="{{ route('kasir.profile.edit') }}">👤 Profil</a>
+        <a href="{{ route('kasir.profile.edit') }}">👤 Profile</a>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
           <button type="submit">🚪 Logout</button>

@@ -23,7 +23,6 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-// Semua pengguna yang login
 Route::middleware('auth')->group(function () {
 
     // === KASIR ===
@@ -31,7 +30,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', function () {
             return view('kasir.dashboard');
         })->name('kasir.dashboard');
-
         // Profil Kasir
         Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
         Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
@@ -56,9 +54,11 @@ Route::middleware('auth')->group(function () {
     
         // Laporan
         Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-Route::get('/admin/laporan/stok', [LaporanController::class, 'stok'])->name('laporan.stok');
-Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
-Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
+        Route::get('/admin/laporan/stok', [LaporanController::class, 'stok'])->name('laporan.stok');
+        Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
+        Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
 });
+
+    Route::resource('penjualan', PenjualansController::class);
 
 });

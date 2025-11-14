@@ -42,11 +42,9 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
         Auth::login($user);
-        // arahkan sesuai role 
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
-        return redirect()->route('kasir.dashboard');
+
+        return redirect(route('dashboard', absolute: false));
     }
 }
