@@ -1,58 +1,87 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-
+namespace App\Http\Controllers\Admin; 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-// 1. Tambahkan 'use' ini
 use App\Models\Barang;
+use App\Models\Penjualan; 
 use App\Exports\StokExport;
+use App\Exports\LabaRugiExport; 
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon; 
 
 class LaporanController extends Controller
 {
-    /**
-     * Tampilkan halaman pilihan laporan (hub)
-     */
     public function index()
     {
-        // 2. Arahkan ke view 'index'
         return view('admin.laporan.index');
     }
 
-    /**
-     * Tampilkan halaman laporan stok
-     */
     public function stok(Request $request)
     {
-        // 3. Ambil data untuk laporan stok
         $barangs = Barang::orderBy('nama_barang', 'asc')->get();
-
         $totalNilaiStok = $barangs->sum(function($barang) {
             return (float) $barang->harga_beli * (int) $barang->stok;
         });
-
-        // 4. Arahkan ke view 'stok'
         return view('admin.laporan.stok', compact('barangs', 'totalNilaiStok'));
     }
 
-    /**
-     * Handle export data stok ke Excel
-     */
     public function stokExport()
     {
-        // 5. Panggil class StokExport yang sudah kita buat
         $tanggal = date('Y-m-d');
         return Excel::download(new StokExport, 'laporan_stok_'. $tanggal .'.xlsx');
     }
 
-    /**
-     * Tampilkan halaman laba rugi (placeholder)
-     */
     public function labaRugi(Request $request)
     {
-        // 6. Arahkan ke view 'laba-rugi'
-        return view('admin.laporan.laba-rugi');
+        $tanggalMulai = $request->input('tanggal_mulai', Carbon::now()->startOfMonth()->format('Y-m-d'));
+        $tanggalAkhir = $request->input('tanggal_akhir', Carbon::now()->format('Y-m-d'));
+
+        $startDate = Carbon::parse($tanggalMulai)->startOfDay();
+        $endDate = Carbon::parse($tanggalAkhir)->endOfDay();
+
+        $penjualans = Penjualan::whereBetween('tanggal', [$startDate, $endDate])
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        $totalPendapatan = 0;
+        $totalHpp = 0;
+        $totalLaba = 0;
+
+        foreach ($penjualans as $penjualan) {
+            $pendapatan = (float) $penjualan->total_harga;
+            
+            $hpp = (float) $penjualan->harga_beli_satuan * (int) $penjualan->jumlah;
+            
+            $laba = $pendapatan - $hpp;
+
+            $penjualan->pendapatan = $pendapatan;
+            $penjualan->hpp = $hpp;
+            $penjualan->laba = $laba;
+
+            $totalPendapatan += $pendapatan;
+            $totalHpp += $hpp;
+            $totalLaba += $laba;
+        }
+
+        return view('admin.laporan.laba-rugi', compact(
+            'penjualans', 
+            'totalPendapatan', 
+            'totalHpp', 
+            'totalLaba', 
+            'tanggalMulai', 
+            'tanggalAkhir'
+        ));
+    }
+
+    public function labaRugiExport(Request $request)
+    {
+        $tanggalMulai = $request->input('tanggal_mulai', Carbon::now()->startOfMonth()->format('Y-m-d'));
+        $tanggalAkhir = $request->input('tanggal_akhir', Carbon::now()->format('Y-m-d'));
+        
+        $tanggal = date('Y-m-d');
+        $namaFile = 'laporan_laba_rugi_' . $tanggalMulai . '_sampai_' . $tanggalAkhir . '.xlsx';
+
+        return Excel::download(new LabaRugiExport($tanggalMulai, $tanggalAkhir), $namaFile);
     }
 }

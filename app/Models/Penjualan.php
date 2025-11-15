@@ -12,6 +12,7 @@ class Penjualan extends Model
     protected $fillable = [
         'nama_pelanggan',
         'nama_barang',
+        'harga_beli_satuan',
         'jumlah',
         'total_harga',
         'via',

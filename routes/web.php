@@ -57,7 +57,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         Route::get('/admin/laporan/stok', [LaporanController::class, 'stok'])->name('laporan.stok');
         Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
-        Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
+        Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.laba-rugi');
+        Route::get('/admin/laporan/laba-rugi/export', [LaporanController::class, 'labaRugiExport'])->name('laporan.laba-rugi.export');
 });
 
     Route::resource('penjualan', PenjualansController::class);
