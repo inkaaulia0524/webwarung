@@ -6,6 +6,8 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\Admin\PengeluaranController;
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\PenjualansController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GrafikController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
@@ -24,24 +26,26 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
 
-    // === KASIR ===
-    Route::middleware('kasir')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('kasir.dashboard');
-        })->name('kasir.dashboard');
-        // Profil Kasir
-        Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
-        Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
-        // stok barang
-        Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokBarangController::class)->only(['index']);
+// === KASIR ===
+Route::middleware('kasir')->group(function () {
+    // Dashboard dengan controller
+    Route::get('/dashboard', [App\Http\Controllers\Kasir\DashboardController::class, 'index'])
+        ->name('kasir.dashboard');
 
-    });
+    // Profil
+    Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
+    Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
+
+    // stok barang
+    Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokBarangController::class)
+        ->only(['index']);
+});
+
 
     // === ADMIN ===
     Route::middleware('admin')->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
+        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/admin/grafik', [GrafikController::class, 'index'])->name('grafik.index');
         // Profil Admin
         Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/admin/profile', [AdminProfileController::class, 'update'])->name('profile.update');
@@ -54,9 +58,9 @@ Route::middleware('auth')->group(function () {
     
         // Laporan
         Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-Route::get('/admin/laporan/stok', [LaporanController::class, 'stok'])->name('laporan.stok');
-Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
-Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
+        Route::get('/admin/laporan/stok', [LaporanController::class, 'stok'])->name('laporan.stok');
+        Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
+        Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
 });
 
     Route::resource('penjualan', PenjualansController::class);
