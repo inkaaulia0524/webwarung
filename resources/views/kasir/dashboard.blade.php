@@ -78,9 +78,4 @@
     </div>
 </div>
 
-<div class="chart-container">
-    <h2>Grafik Barang Masuk vs Keluar</h2>
-    <p>Di sini Anda bisa meletakkan chart (misalnya menggunakan Chart.js).</p>
-</div>
-
 @endsection
