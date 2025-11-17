@@ -59,6 +59,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
         Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.laba-rugi');
         Route::get('/admin/laporan/laba-rugi/export', [LaporanController::class, 'labaRugiExport'])->name('laporan.laba-rugi.export');
+
+        // Hutang Piutang
+        Route::resource('/admin/hutangpiutang', App\Http\Controllers\Admin\HutangPiutangController::class);
 });
 
     Route::resource('penjualan', PenjualansController::class);

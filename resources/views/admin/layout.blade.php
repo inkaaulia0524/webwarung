@@ -174,6 +174,9 @@
           <li class="{{ Request::is('admin/grafik*') ? 'active' : '' }}">
             <a href="{{ route('grafik.index') }}">📊 Grafik</a>
           </li>
+          <li class="{{ Request::is('admin/hutangpiutang*') ? 'active' : '' }}">
+            <a href="{{ route('hutangpiutang.index') }}">💰 Hutang Piutang</a>
+          </li>
         </ul>
       </div>
 
