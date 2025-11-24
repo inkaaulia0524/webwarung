@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use ReCaptcha\ReCaptcha; // <-- Import class reCAPTCHA
+use ReCaptcha\ReCaptcha; 
 
 class RecaptchaRule implements ValidationRule
 {
