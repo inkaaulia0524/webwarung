@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->integer('jumlah');
             $table->decimal('total_harga', 12, 2);
-            $table->enum('via', ['Tunai', 'QRIS', 'Transfer']);
+            $table->enum('via', ['Tunai', 'QRIS', 'Transfer', 'Hutang']);
             $table->date('tanggal');
             $table->timestamps();
         });

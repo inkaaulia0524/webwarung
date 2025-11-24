@@ -51,10 +51,9 @@
         <p>Melihat jumlah dan nilai total stok barang saat ini.</p>
     </a>
 
-    <a href="{{ route('laporan.labaRugi') }}" class="report-card">
+    <a href="{{ route('laporan.laba-rugi') }}" class="report-card">
         <h2>💰 Laporan Laba Rugi</h2>
         <p>Menganalisis pendapatan dan pengeluaran.</p>
-        <span class="coming-soon">Perancangan</span>
     </a>
 </div>
 @endsection

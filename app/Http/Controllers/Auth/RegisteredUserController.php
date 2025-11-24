@@ -55,5 +55,6 @@ if ($user->role === 'admin') {
 
 return redirect('/'); // fallback
 
+        return redirect(route('dashboard', absolute: false));
     }
 }

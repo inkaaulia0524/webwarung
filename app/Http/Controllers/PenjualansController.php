@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Barang;
 use App\Models\Penjualan;
+use App\Models\HutangPiutang; 
 use Illuminate\Http\Request;
 
 class PenjualansController extends Controller

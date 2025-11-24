@@ -62,6 +62,9 @@ Route::middleware('kasir')->group(function () {
         Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
         Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
 });
+    });
+
+    Route::resource('penjualan', PenjualansController::class);
 
     Route::resource('penjualan', PenjualansController::class);
 
