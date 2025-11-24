@@ -45,6 +45,16 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        if ($user->role === 'kasir') {
+    return redirect()->route('kasir.dashboard');
+}
+
+if ($user->role === 'admin') {
+    return redirect()->route('admin.dashboard'); 
+}
+
+return redirect('/'); // fallback
+
         return redirect(route('dashboard', absolute: false));
     }
 }
