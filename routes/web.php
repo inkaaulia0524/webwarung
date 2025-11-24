@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
         // Hutang Piutang
         Route::resource('/admin/hutangpiutang', App\Http\Controllers\Admin\HutangPiutangController::class);
 });
+    });
 
     Route::resource('penjualan', PenjualansController::class);
 

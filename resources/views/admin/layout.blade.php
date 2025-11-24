@@ -166,6 +166,7 @@
             <a href="{{ route('pembelian.index') }}">📥 Barang Masuk</a>
           </li>
           <li class="{{ Request::is('admin/pengeluaran*') ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/barang-keluar*') ? 'active' : '' }}">
             <a href="{{ route('pengeluaran.index') }}">📤 Barang Keluar</a>
           </li>
           <li class="{{ Request::is('admin/laporan*') ? 'active' : '' }}">
