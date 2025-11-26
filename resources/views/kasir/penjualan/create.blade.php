@@ -102,6 +102,7 @@
                 <option value="Tunai" {{ old('via') == 'Tunai' ? 'selected' : '' }}>Tunai</option>
                 <option value="Transfer" {{ old('via') == 'Transfer' ? 'selected' : '' }}>Transfer</option>
                 <option value="QRIS" {{ old('via') == 'QRIS' ? 'selected' : '' }}>QRIS</option>
+                <option value='Hutang' {{ old('via') == 'Hutang' ? 'selected' : '' }}>Hutang</option>
             </select>
         </div>
 

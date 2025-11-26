@@ -166,6 +166,7 @@
             <a href="{{ route('pembelian.index') }}">📥 Barang Masuk</a>
           </li>
           <li class="{{ Request::is('admin/pengeluaran*') ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/barang-keluar*') ? 'active' : '' }}">
             <a href="{{ route('pengeluaran.index') }}">📤 Barang Keluar</a>
           </li>
           <li class="{{ Request::is('admin/laporan*') ? 'active' : '' }}">
@@ -173,6 +174,9 @@
           </li>
           <li class="{{ Request::is('admin/grafik*') ? 'active' : '' }}">
             <a href="{{ route('grafik.index') }}">📊 Grafik</a>
+          </li>
+          <li class="{{ Request::is('admin/hutangpiutang*') ? 'active' : '' }}">
+            <a href="{{ route('hutangpiutang.index') }}">💰 Hutang Piutang</a>
           </li>
         </ul>
       </div>

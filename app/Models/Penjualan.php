@@ -17,5 +17,12 @@ class Penjualan extends Model
         'total_harga',
         'via',
         'tanggal',
+        'barang_id',
     ];
+    public function hutang()
+    {
+    return $this->hasOne(HutangPiutang::class);
 }
+
+}
+
