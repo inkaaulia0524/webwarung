@@ -94,13 +94,6 @@
       </table>
     </div>
 
-    {{-- Pagination --}}
-    @if (method_exists($barangs, 'links'))
-      <div style="margin-top:8px;">
-        {{ $barangs->appends(['search' => request('search')])->links() }}
-      </div>
-    @endif
-
     {{-- Tombol Tambah Barang --}}
     <div>
       <a href="{{ route('barang.create') }}" 
@@ -111,5 +104,37 @@
         Create New Barang
       </a>
     </div>
+
+    {{-- tombol previous/next --}}
+    <div style="display:flex;justify-content:space-between;margin-top:12px;">
+      @if ($barangs->onFirstPage())
+      <span></span>
+      @else
+      <a href="{{ $barangs->previousPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Previous
+      </a>
+      @endif
+
+      @if ($barangs->hasMorePages())
+      <a href="{{ $barangs->nextPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Next
+      </a>
+      @else
+      <span></span>
+    @endif
   </div>
 @endsection
