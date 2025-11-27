@@ -98,20 +98,15 @@
         </div>
 
         {{-- Tombol Submit --}}
-        <button type="submit" style="
-          display:inline-block;
-          padding:12px 20px;
-          background-color:var(--primary-color);
-          color:white;
-          font-size:16px;
-          font-weight:600;
-          border-radius:8px;
-          cursor:pointer;
-          width:100%;
-          border:none;
-          transition:background-color 0.3s;">
-          Submit
-        </button>
+        <div style="display: flex; gap: 8px; align-items: center; justify-content: flex-start;">
+          <button type="submit" style="padding:8px 14px;background-color:var(--primary-hover);color:white;font-size:16px;font-weight:600;border-radius:8px;width:auto;border:none;cursor:pointer;">
+            Submit
+          </button>
+
+          <a href="{{ route('supplier.index') }}" style="padding:8px 14px;background-color:var(--primary-hover);color:white;font-size:16px;font-weight:600;border-radius:8px;width:auto;text-decoration:none;display:inline-block;">
+            Kembali
+          </a>
+        </div>
       </form>
     </div>
   </div>

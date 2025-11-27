@@ -122,13 +122,6 @@
       </table>
     </div>
 
-    {{-- Pagination (opsional jika pakai paginate()) --}}
-    @if (method_exists($suppliers, 'links'))
-      <div style="margin-top:8px;">
-        {{ $suppliers->appends(['search' => request('search')])->links() }}
-      </div>
-    @endif
-
     {{-- Tombol Tambah Supplier --}}
     <div>
       <a href="{{ route('supplier.create') }}"
@@ -143,5 +136,37 @@
         Create new supplier
       </a>
     </div>
+
+    {{-- tombol previous/next --}}
+    <div style="display:flex;justify-content:space-between;margin-top:12px;">
+      @if ($suppliers->onFirstPage())
+      <span></span>
+      @else
+      <a href="{{ $suppliers->previousPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Previous
+      </a>
+      @endif
+
+      @if ($suppliers->hasMorePages())
+      <a href="{{ $suppliers->nextPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Next
+      </a>
+      @else
+      <span></span>
+    @endif
   </div>
 @endsection
