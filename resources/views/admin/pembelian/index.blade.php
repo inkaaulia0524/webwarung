@@ -94,12 +94,7 @@
       </table>
     </div>
 
-    @if (method_exists($pembelians, 'links'))
-      <div style="margin-top:8px;">
-        {{ $pembelians->appends(['search' => request('search')])->links() }}
-      </div>
-    @endif
-
+    {{-- Tombol Tambah Pembelian --}}
     <div>
       <a href="{{ route('pembelian.create') }}" 
          style="display:inline-block;padding:10px 14px;
@@ -109,5 +104,38 @@
         Add New Purchase
       </a>
     </div>
+
+    {{-- tombol previous/next --}}
+    <div style="display:flex;justify-content:space-between;margin-top:12px;">
+      @if ($pembelians->onFirstPage())
+      <span></span>
+      @else
+      <a href="{{ $pembelians->previousPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Previous
+      </a>
+      @endif
+
+      @if ($pembelians->hasMorePages())
+      <a href="{{ $pembelians->nextPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Next
+      </a>
+      @else
+      <span></span>
+    @endif
+
   </div>
 @endsection

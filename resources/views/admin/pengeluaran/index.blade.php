@@ -96,13 +96,6 @@
       </table>
     </div>
 
-    {{-- Pagination --}}
-    @if (method_exists($pengeluaran, 'links'))
-      <div style="margin-top:8px;">
-        {{ $pengeluaran->appends(['search' => $search])->links() }}
-      </div>
-    @endif
-
     {{-- Tombol Tambah Pengeluaran --}}
     <div>
       <a href="{{ route('pengeluaran.create') }}"
@@ -113,5 +106,38 @@
         Tambah Pengeluaran Barang
       </a>
     </div>
+
+    {{-- tombol previous/next --}}
+    <div style="display:flex;justify-content:space-between;margin-top:12px;">
+      @if ($pengeluaran->onFirstPage())
+      <span></span>
+      @else
+      <a href="{{ $pengeluaran->previousPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Previous
+      </a>
+      @endif
+
+      @if ($pengeluaran->hasMorePages())
+      <a href="{{ $pengeluaran->nextPageUrl() }}&search={{ request('search') }}"
+        style="
+         padding:8px 12px;
+         background:var(--primary-color);
+         color:#fff;
+         border-radius:6px;
+         text-decoration:none;
+         font-weight:600;">
+        Next
+      </a>
+      @else
+      <span></span>
+    @endif
+
   </div>
 @endsection
