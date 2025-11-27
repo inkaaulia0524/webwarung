@@ -8,6 +8,7 @@
         Supplier List
       </h2>
 
+      {{-- ngecek apakah ada pesan sukses. akan menampilkan pesan sukses dari controller jika ada --}}
       @if (session('success'))
         <div style="
           padding:10px 12px;
@@ -20,7 +21,7 @@
         </div>
       @endif
 
-      {{-- Form Pencarian --}}
+      {{-- Form Pencarian menggunakan metode GET --}}
       <form method="GET" action="{{ route('supplier.index') }}" style="display:flex;gap:0;margin-bottom:12px;align-items:stretch;">
         <input
           type="text"
@@ -36,6 +37,7 @@
             border-bottom-left-radius:6px;
             outline:none;"
         >
+        {{-- tombol search --}}
         <button type="submit" style="
           padding:10px 16px;
           border:1px solid var(--primary-color);
@@ -68,6 +70,7 @@
           </tr>
         </thead>
         <tbody>
+          {{-- Menampilkan daftar supplier --}}
           @forelse ($suppliers as $supplier)
             <tr style="border-bottom:1px solid var(--border-color);">
               <td style="padding:10px 12px;">{{ $supplier->name }}</td>
@@ -76,6 +79,7 @@
               <td style="padding:10px 12px;">{{ $supplier->address }}</td>
               <td style="padding:10px 12px;">
                 <div style="display:flex; gap:8px; align-items:center;">
+                  {{-- Tombol Edit menggunakan id --}}
                   <a href="{{ route('supplier.edit', $supplier->id) }}"
                      style="
                       display:inline-block;
@@ -88,10 +92,11 @@
                     Edit
                   </a>
 
+                  {{-- Tombol Delete menggunakan metode POST dengan spoofing method DELETE --}}
                   <form action="{{ route('supplier.destroy', $supplier->id) }}" method="POST"
                         onsubmit="return confirm('Hapus supplier ini?');" style="display:inline-block;">
-                    @csrf
-                    @method('DELETE')
+                    @csrf {{-- Token CSRF untuk keamanan --}}
+                    @method('DELETE') 
                     <button type="submit" style="
                       padding:8px 12px;
                       background:var(--danger-color);

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PengeluaranController;
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\PenjualansController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Kasir\DashboardController as KasirDashboardController;
 use App\Http\Controllers\Admin\GrafikController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
@@ -26,21 +27,19 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
 
-// === KASIR ===
-Route::middleware('kasir')->group(function () {
-    // Dashboard dengan controller
-    Route::get('/dashboard', [App\Http\Controllers\Kasir\DashboardController::class, 'index'])
-        ->name('kasir.dashboard');
+    // === KASIR ===
+    Route::middleware('kasir')->group(function () {
+        // Dashboard dengan controller
+        Route::get('/dashboard', [KasirDashboardController::class, 'index'])->name('kasir.dashboard');
+        // Profil Kasir
+        Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
+        Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
+        // stok barang
+        Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokBarangController::class)->only(['index']);
+        // penjualan
+        Route::resource('penjualan', PenjualansController::class);
 
-    // Profil
-    Route::get('/kasir/profile', [ProfileController::class, 'edit'])->name('kasir.profile.edit');
-    Route::patch('/kasir/profile', [ProfileController::class, 'update'])->name('kasir.profile.update');
-
-    // stok barang
-    Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokBarangController::class)
-        ->only(['index']);
-});
-
+    });
 
     // === ADMIN ===
     Route::middleware('admin')->group(function () {
@@ -60,12 +59,11 @@ Route::middleware('kasir')->group(function () {
         Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         Route::get('/admin/laporan/stok', [LaporanController::class, 'stok'])->name('laporan.stok');
         Route::get('/admin/laporan/stok/export', [LaporanController::class, 'stokExport'])->name('laporan.stok.export');
-        Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.labaRugi');
+        Route::get('/admin/laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('laporan.laba-rugi');
+        Route::get('/admin/laporan/laba-rugi/export', [LaporanController::class, 'labaRugiExport'])->name('laporan.laba-rugi.export');
+
+        // Hutang Piutang
+        Route::resource('/admin/hutangpiutang', App\Http\Controllers\Admin\HutangPiutangController::class);
 });
-    });
-
-    Route::resource('penjualan', PenjualansController::class);
-
-    Route::resource('penjualan', PenjualansController::class);
 
 });

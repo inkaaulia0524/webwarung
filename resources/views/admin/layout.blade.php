@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WarungKu - Admin</title>
-
+  <link rel="icon" type="image/png" href="{{ asset('images/warungweB.png') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
@@ -166,7 +166,6 @@
             <a href="{{ route('pembelian.index') }}">📥 Barang Masuk</a>
           </li>
           <li class="{{ Request::is('admin/pengeluaran*') ? 'active' : '' }}">
-          <li class="{{ Request::is('admin/barang-keluar*') ? 'active' : '' }}">
             <a href="{{ route('pengeluaran.index') }}">📤 Barang Keluar</a>
           </li>
           <li class="{{ Request::is('admin/laporan*') ? 'active' : '' }}">

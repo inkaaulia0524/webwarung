@@ -8,6 +8,7 @@
         Create New Supplier
       </h2>
 
+      {{-- ngecek apakah ada pesan sukses. akan menampilkan pesan sukses dari controller jika ada --}}
       @if (session('success'))
         <div style="
           padding:10px 12px;
@@ -20,9 +21,9 @@
         </div>
       @endif
 
-      {{-- Form Pencarian --}}
+      {{-- Form Pembuatan Supplier --}}
       <form action="{{ route('supplier.store') }}" method="POST" style="display:flex;flex-direction:column;gap:16px;">
-        @csrf
+        @csrf {{-- Token CSRF untuk keamanan --}}
 
         <div>
           <label for="name" style="font-size:16px;font-weight:600;color:var(--text-dark);">Supplier Name</label>
@@ -36,7 +37,8 @@
                    outline:none;
                    width:100%;
                    box-sizing:border-box;">
-          @error('name')
+          {{-- jika ada error pada field name, tampilkan pesan error --}}
+          @error('name') 
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
         </div>
@@ -53,6 +55,7 @@
                    outline:none;
                    width:100%;
                    box-sizing:border-box;">
+          {{-- jika ada error pada field email, tampilkan pesan error --}}
           @error('email')
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
@@ -70,6 +73,7 @@
                    outline:none;
                    width:100%;
                    box-sizing:border-box;">
+          {{-- jika ada error pada field phone, tampilkan pesan error --}}
           @error('phone')
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
@@ -87,11 +91,13 @@
                       outline:none;
                       width:100%;
                       box-sizing:border-box;">{{ old('address') }}</textarea>
+          {{-- jika ada error pada field address, tampilkan pesan error --}}
           @error('address')
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
         </div>
 
+        {{-- Tombol Submit --}}
         <button type="submit" style="
           display:inline-block;
           padding:12px 20px;

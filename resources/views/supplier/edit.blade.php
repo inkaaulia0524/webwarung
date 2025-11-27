@@ -8,6 +8,7 @@
         Edit Supplier
       </h2>
 
+      {{-- ngecek apakah ada pesan sukses. akan menampilkan pesan sukses dari controller jika ada --}}
       @if (session('success'))
         <div style="
           padding:10px 12px;
@@ -20,13 +21,15 @@
         </div>
       @endif
 
-      {{-- Form Edit Supplier --}}
-      <form action="{{ route('supplier.update', $supplier->id) }}" method="POST" style="display:flex;flex-direction:column;gap:16px;">
-        @csrf
-        @method('PUT')
+      {{-- Form Edit Supplier menggunakan id. menggunakan method POST dengan spoofing method PUT --}}
+      <form action="{{ route('supplier.update', $supplier->id) }}" method="POST" style="display:flex;flex-direction:column;gap:16px;"> 
+        @csrf {{-- Token CSRF untuk keamanan --}}
+        @method('PUT') {{-- Metode PUT untuk update --}}
 
         <div>
+          {{-- Label dan input untuk nama supplier --}}
           <label for="name" style="font-size:16px;font-weight:600;color:var(--text-dark);">Supplier Name</label>
+          {{-- required nama --}}
           <input type="text" id="name" name="name" value="{{ old('name', $supplier->name) }}" required
                  style="
                    padding:12px 16px;
@@ -37,12 +40,15 @@
                    outline:none;
                    width:100%;
                    box-sizing:border-box;">
+          {{-- jika ada error pada field name, tampilkan pesan error --}}
           @error('name')
+          {{-- pesan error untuk field name --}}
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
         </div>
 
         <div>
+          {{-- Label dan input untuk email --}}
           <label for="email" style="font-size:16px;font-weight:600;color:var(--text-dark);">Email</label>
           <input type="email" id="email" name="email" value="{{ old('email', $supplier->email) }}" required
                  style="
@@ -54,12 +60,14 @@
                    outline:none;
                    width:100%;
                    box-sizing:border-box;">
+          {{-- jika ada error pada field email, tampilkan pesan error --}}
           @error('email')
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
         </div>
 
         <div>
+          {{-- Label dan input untuk no telp --}}
           <label for="phone" style="font-size:16px;font-weight:600;color:var(--text-dark);">Phone</label>
           <input type="text" id="phone" name="phone" value="{{ old('phone', $supplier->phone) }}" required
                  style="
@@ -71,12 +79,14 @@
                    outline:none;
                    width:100%;
                    box-sizing:border-box;">
+          {{-- jika ada error pada field phone (no telp), tampilkan pesan error --}}
           @error('phone')
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
         </div>
 
         <div>
+          {{-- Label dan textarea untuk alamat --}}
           <label for="address" style="font-size:16px;font-weight:600;color:var(--text-dark);">Address</label>
           <textarea id="address" name="address" rows="4" required
                     style="
@@ -88,11 +98,13 @@
                       outline:none;
                       width:100%;
                       box-sizing:border-box;">{{ old('address', $supplier->address) }}</textarea>
+          {{-- jika ada error pada field address, tampilkan pesan error --}}
           @error('address')
             <p style="color:#cc0000;font-size:12px;margin-top:4px;">{{ $message }}</p>
           @enderror
         </div>
 
+        {{-- Tombol Submit dan Kembali --}}
         <div style="display: flex; gap: 8px; align-items: center; justify-content: flex-start;">
           <button type="submit" style="
             display:inline-block;
