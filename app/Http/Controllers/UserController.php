@@ -18,9 +18,9 @@ class UserController extends Controller
         elseif(Auth::check() && Auth::user()->role == 'kasir'){
             return view('kasir.dashboard');
         }
-        else{
-            return redirect ('/');
+        else{'/');
         }
+            return redirect (
     }
 
     /**
