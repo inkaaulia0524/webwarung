@@ -175,7 +175,7 @@
             <p>Kelola Usaha Jadi Lebih Mudah 💼</p>
         </div>
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}"> //terhubung dengan route web php
             @csrf
 
             <div class="form-group">

@@ -12,19 +12,19 @@ class PenjualansController extends Controller
     /**
      * Tampilkan daftar penjualan (dengan fitur pencarian)
      */
-public function index(Request $request)
+public function index(Request $request) //baca input pencarian dari request
 {
-    $keyword = $request->input('search');
+    $keyword = $request->input('search'); //ambil keyword pencarian
 
-    $penjualans = \App\Models\Penjualan::when($keyword, function ($query, $keyword) {
+    $penjualans = \App\Models\Penjualan::when($keyword, function ($query, $keyword) { //ambil data penjualan jika ada keyword di penacariannya
         $query->where('nama_pelanggan', 'like', "%{$keyword}%")
               ->orWhere('nama_barang', 'like', "%{$keyword}%")
               ->orWhere('via', 'like', "%{$keyword}%");
     })
-    ->orderBy('tanggal', 'desc')
-    ->paginate(10);
+    ->orderBy('tanggal', 'desc') //urutkan berdasarkan tanggal terbaru
+    ->paginate(10); //tampilkan 10 data per halaman
 
-    return view('kasir.penjualan.index', compact('penjualans', 'keyword'));
+    return view('kasir.penjualan.index', compact('penjualans', 'keyword')); //kirim data penjualan dan keyword ke view
 }
 
     /**
@@ -32,10 +32,10 @@ public function index(Request $request)
      */
     public function create()
 {
+    //user harus memilih barang dari daftar yang ada
     $barangs = Barang::all();
     return view('kasir.penjualan.create', compact('barangs'));
 }
-
 
     /**
      * Simpan data baru ke database
@@ -70,10 +70,11 @@ public function store(Request $request)
     ]);
 
     // Kurangi stok
-    $barang->stok -= $request->jumlah;
+    $barang->stok -= $request->jumlah; //stok dikurangi sesuai jumlah terjual
     $barang->save();
 
     return redirect()->route('penjualan.index')->with('success', 'Penjualan berhasil dan stok berkurang!');
+    //transfer ke halaman daftar penjualan dengan pesan sukses
 }
 
     /**

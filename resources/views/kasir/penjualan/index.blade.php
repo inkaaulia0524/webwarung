@@ -93,7 +93,7 @@
   {{-- Pagination --}}
   @if (method_exists($penjualans, 'links'))
     <div style="margin-top:8px;">
-      {{ $penjualans->appends(['search' => request('search')])->links() }}
+      {{ $penjualans->appends(['search' => request('search')])->links() }} // mempertahankan barang yang di cari waktu pencarian saat paginasi
     </div>
   @endif
 </div>

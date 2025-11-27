@@ -35,15 +35,18 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        $user = User::create([ //User model terhubung ke tabel users di database
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password), //pw disimpen kode database itu make hash
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
+        //setelah daftar, lalu diarahkan ke dashboard sesuai role
+
+         $user = Auth::user();
 
         if ($user->role === 'kasir') {
     return redirect()->route('kasir.dashboard');

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penjualan extends Model
+class Penjualan extends Model //terhubung dgn database penjualans
 {
-    use HasFactory;
+    use HasFactory; //dummy data
 
     protected $fillable = [
         'nama_pelanggan',

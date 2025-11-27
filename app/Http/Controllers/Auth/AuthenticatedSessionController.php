@@ -28,7 +28,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // --- PERUBAHAN DIMULAI DI SINI ---
         
         // Ambil role, ubah ke huruf kecil, dan beri nilai default '' jika null
         $role = strtolower(Auth::user()->role ?? ''); 

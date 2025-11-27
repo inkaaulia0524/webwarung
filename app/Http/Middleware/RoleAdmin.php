@@ -12,11 +12,12 @@ class RoleAdmin
     public function handle(Request $request, Closure $next): Response
     {
         // harus login dulu
+        // pengecekan akses user
         if (!Auth::check()) {
             return redirect()->route('login');
         }
 
-        // kalau bukan admin -> 403
+        // kalau bukan admin -> akses tolak
         if (Auth::user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }

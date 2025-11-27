@@ -11,10 +11,12 @@ class RoleKasir
 {
     public function handle(Request $request, Closure $next): Response
     {
+        //cek dah login belom
         if (!Auth::check()) {
             return redirect()->route('login');
         }
 
+        //cek kasir bukan, kalo bukan kasir tolak akses
         if (Auth::user()->role !== 'kasir') {
             abort(403, 'Unauthorized action.');
         }

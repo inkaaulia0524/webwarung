@@ -26,7 +26,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
 
-        $validated = $request->validate([
+        $validated = $request->validate([ //
             'name' => ['required','string','max:255'],
             'email' => ['required','string','email','max:255'],
             'password' => ['nullable','confirmed', Rules\Password::defaults()],
