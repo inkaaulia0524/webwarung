@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
         // Dashboard dengan controller
         Route::get('/dashboard', [KasirDashboardController::class, 'index'])->name('kasir.dashboard');
         // Profil Kasir
-       Route::get('/kasir/profile', [KasirProfileController::class, 'edit'])->name('kasir.profile.edit');
+        Route::get('/kasir/profile', [KasirProfileController::class, 'edit'])->name('kasir.profile.edit');
         Route::patch('/kasir/profile', [KasirProfileController::class, 'update'])->name('kasir.profile.update');
         // stok barang
         Route::resource('/kasir/stok', App\Http\Controllers\Kasir\StokBarangController::class)->only(['index']);
