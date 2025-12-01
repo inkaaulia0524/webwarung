@@ -239,7 +239,8 @@
                         Lupa Password?
                     </a>
                 @endif
-            </div> <div class="form-group">
+            </div> 
+            <div class="form-group">
                 <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
 
                 @if ($errors->has('g-recaptcha-response'))

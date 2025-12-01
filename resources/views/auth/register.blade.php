@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
         :root {
@@ -47,6 +48,7 @@
             min-height: 100vh;
             margin: 0;
             color: var(--text-color);
+            padding: 2rem 0;
         }
 
         .login-container {
@@ -175,7 +177,7 @@
             <p>Kelola Usaha Jadi Lebih Mudah 💼</p>
         </div>
 
-        <form method="POST" action="{{ route('register') }}"> //terhubung dengan route web php
+        <form method="POST" action="{{ route('register') }}"> 
             @csrf
 
             <div class="form-group">
@@ -219,6 +221,17 @@
                 <input id="password-confirmation" type="password" name="password_confirmation" required>
             </div>
 
+            <div class="form-group" style="display:flex; flex-direction:column; align-items:center; gap:0.5rem;">
+                <div class="recaptcha-wrapper" style="width:100%; display:flex; justify-content:center;">
+                    <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+                </div>
+
+                @if ($errors->has('g-recaptcha-response'))
+                    <div class="invalid-feedback" role="alert" style="text-align:center;">
+                        {{ $errors->first('g-recaptcha-response') }}
+                    </div>
+                @endif
+            </div>
 
             <button type="submit" class="login-button">
                 Daftar
