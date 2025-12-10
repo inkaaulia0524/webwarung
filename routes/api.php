@@ -6,6 +6,10 @@ use App\Http\Controllers\Api\BarangApiController;
 use App\Http\Controllers\Api\SupplierApiController;
 use App\Http\Controllers\Api\PengeluaranApiController;
 use App\Http\Controllers\Api\HutangPiutangApiController;
+use App\Http\Controllers\Api\PembelianApiController;
+use App\Http\Controllers\Api\DashboardApiController;
+use App\Http\Controllers\Api\LaporanApiController; 
+use App\Http\Controllers\Api\GrafikApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +45,15 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route User Profile (Opsional, untuk cek siapa yang login)
     Route::get('/user', function (Illuminate\Http\Request $request) {
         return $request->user();
+    });
+
+    Route::get('/dashboard', [DashboardApiController::class, 'index']);
+    Route::apiResource('pembelian', PembelianApiController::class);
+    Route::prefix('laporan')->group(function () {
+        Route::get('/', [LaporanApiController::class, 'index']); 
+        
+        Route::get('/stok', [LaporanApiController::class, 'stok']);
+        
+        Route::get('/laba-rugi', [LaporanApiController::class, 'labaRugi']);
     });
 });
