@@ -91,4 +91,33 @@ class AuthController extends Controller
             'message' => 'Logout berhasil'
         ]);
     }
+    /** update profile
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        //validasi
+        $validator = Validator::make($request->all(), [
+            'name'      => 'sometimes|required|string|max:255',
+            'email'     => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
+            'password'  => 'sometimes|required|string|min:8|confirmed',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'validasi gagal',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+        //update data
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        return response()->json([
+            'message' => 'Profile berhasil diupdate',
+            'user' => $user,
+        ], 200);
+    }
 }

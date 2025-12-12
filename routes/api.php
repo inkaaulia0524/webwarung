@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Logout
     Route::post('/logout', [AuthController::class, 'logout']);
-
+   
     // Route Fitur Utama (Sebaiknya dipindah ke sini agar aman)
     Route::apiResource('barang', BarangApiController::class);
     Route::apiResource('suppliers', SupplierApiController::class);
@@ -46,6 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Illuminate\Http\Request $request) {
         return $request->user();
     });
+    // update profile
+    Route::put('/user/update', [AuthController::class, 'updateProfile']);
 
     Route::get('/dashboard', [DashboardApiController::class, 'index']);
     Route::apiResource('pembelian', PembelianApiController::class);
