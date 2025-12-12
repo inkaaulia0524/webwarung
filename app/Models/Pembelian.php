@@ -14,7 +14,7 @@ class Pembelian extends Model
      *
      * @var array<int, string>
      */
-    
+    protected $table = 'pembelians';
     protected $fillable = [
         'barang_id',
         'supplier_id',

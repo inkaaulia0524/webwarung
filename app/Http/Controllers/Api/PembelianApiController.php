@@ -17,19 +17,15 @@ class PembelianApiController extends Controller
 
         $pembelians = Pembelian::with(['barang', 'supplier'])
             ->when($search, function ($query, $search) {
-                return $query->whereHas('barang', function ($q) use ($search) {
-                    $q->where('nama_barang', 'like', "%{$search}%");
-                })->orWhereHas('supplier', function ($query) use ($search) {
-                    $query->where('name', 'like', '%' . $search . '%');
-                });
+                 // ... logic search biarkan saja ...
             })
             ->latest()
-            ->paginate(10); // Tetap pakai paginate, nanti di JSON ada link "next_page"
+            ->get(); // <--- GANTI DARI paginate(10) KE get()
 
         return response()->json([
             'success' => true,
             'message' => 'Daftar Data Pembelian',
-            'data'    => $pembelians
+            'data'    => $pembelians // Sekarang ini adalah Array List murni
         ]);
     }
 
