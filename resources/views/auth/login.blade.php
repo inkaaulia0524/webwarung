@@ -201,7 +201,7 @@
             <p>Kelola Usaha Jadi Lebih Mudah 💼</p>
         </div>
 
-        <form method="POST" action="{{ route('login') }}"> //terhubung dengan route web php
+        <form method="POST" action="{{ route('login') }}"> 
             @csrf
 
             <div class="form-group">
